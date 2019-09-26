@@ -13,24 +13,24 @@ class GameOfLifeEngine:
         self.state = board
     
     def countNeighbors(self):
-        cell = self.state
-        total_neighbors = (cell[0:-2, 0:-2] + cell[0:-2, 1:-1] + cell[0:-2, 2:] +
-                            cell[1:-1, 0:-2] + cell[1:-1, 2:] + cell[2:, 0:-2] +
-                            cell[2:, 1:-1] + cell[2:, 2:])
+        state = self.state
+        total_neighbors = (state[0:-2, 0:-2] + state[0:-2, 1:-1] + state[0:-2, 2:] +
+                            state[1:-1, 0:-2] + state[1:-1, 2:] + state[2:, 0:-2] +
+                            state[2:, 1:-1] + state[2:, 2:])
         return total_neighbors
 
     def applyGameRules(self):
         total_neighbors = self.countNeighbors()
-        cell = self.state
-        birth = (total_neighbors == 3) & (cell[1:-1, 1:-1] == 0)
-        survive = ((total_neighbors == 2) | (total_neighbors == 3)) & (cell[1:-1, 1:-1] == 1)
-        cell[...] = DEAD
-        cell[1:-1, 1:-1][birth | survive] = ALIVE
+        state = self.state
+        birth = (total_neighbors == 3) & (state[1:-1, 1:-1] == 0)
+        survive = ((total_neighbors == 2) | (total_neighbors == 3)) & (state[1:-1, 1:-1] == 1)
+        state[...] = DEAD
+        state[1:-1, 1:-1][birth | survive] = ALIVE
         nBirth = np.sum(birth)
         self.nBirth = nBirth
         nSurvive = np.sum(survive)
         self.nSurvive = nSurvive
-        return cell
+        return state
 
 def makeBoardFromFile(initial_data):
     with open(initial_data, 'r') as initial_data:
@@ -92,7 +92,6 @@ def main():
             print("random_hegiht: {}".format(random_height))
             height = random_height
         board = randomBoard(height, width)
-        print("else board: {}".format(board))
         generation = 0
         visualize(board, generation)
     elif len(sys.argv) == 3:
