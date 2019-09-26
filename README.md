@@ -1,5 +1,9 @@
 # GameOfLife
 
+## Overview
+If you use plus.txt file for argument, you'll see like this result.
+![Alt text](./image/gameOfLife1.png)
+
 ## How to execute
 gameOfLife.py file can be executed by 3 states.
 
