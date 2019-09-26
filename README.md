@@ -8,7 +8,8 @@ And if you don't use plus.txt file, and try to run random board state, you'll se
 <img src="./image/gameOfLife2.png" width="500" height="420"></img>
 
 ## Before execute
-
+You have to install the packages before executing the code. Please use this command line.
+```$ pip install -r requirements.txt```
 
 ## How to execute
 gameOfLife.py file can be executed by 3 states.
