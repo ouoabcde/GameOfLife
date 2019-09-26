@@ -56,19 +56,21 @@ def makeBoardFromFile(initial_data):
                 board[row, col] = ALIVE
         return board
 
-def visualize(board):
-    plt.title("Jung Hyun's Game of Life")
+def visualize(board, generation):
     engine = GameOfLifeEngine(board)
-    generation = 0
+    count = 0
     while True:
-        if generation == 0:
+        plt.title("Jung Hyun's Game of Life - Generation: {}".format(count))
+        if count == 0:
             plt.ion()
-        generation += 1
-        plt.imshow(board, cmap='binary')
-        plt.show()
+        count += 1
+        # show board state after the given generation
+        if count >= generation:
+            plt.imshow(board, cmap='binary')
+            plt.show()
         engine.applyGameRules()
         # set up animation
-        print('Generation: {} Birth: {} Survive: {}'.format(generation, engine.nBirth, engine.nSurvive))
+        print('Generation: {} Birth: {} Survive: {}'.format(count, engine.nBirth, engine.nSurvive))
         plt.pause(0.3)
 
 def randomBoard(height, width): 
@@ -78,7 +80,8 @@ def randomBoard(height, width):
 def main():
     if len(sys.argv) == 2:
         board = makeBoardFromFile(sys.argv[1])
-        visualize(board)
+        generation = 0
+        visualize(board, generation)
     elif len(sys.argv) == 1:
         random_width = random.randint(0, 200)
         random_height = random.randint(0, 200)
@@ -90,7 +93,12 @@ def main():
             height = random_height
         board = randomBoard(height, width)
         print("else board: {}".format(board))
-        visualize(board)
+        generation = 0
+        visualize(board, generation)
+    elif len(sys.argv) == 3:
+        board = makeBoardFromFile(sys.argv[1])
+        generation = int(sys.argv[2])
+        visualize(board, generation)
 
 if __name__ == '__main__':
     main()
