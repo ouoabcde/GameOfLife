@@ -9,6 +9,7 @@ And if you don't use plus.txt file, and try to run random board state, you'll se
 
 ## Before execute
 You have to install the packages before executing the code. Please use this command line.
+
 ```$ pip install -r requirements.txt```
 
 ## How to execute
