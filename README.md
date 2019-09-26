@@ -2,7 +2,7 @@
 
 ## Overview
 If you use plus.txt file for argument, you'll see like this result.
-![Alt text](./image/gameOfLife1.png)
+<img src="./image/gameOfLife1.png" width="800" height="672"></img>
 
 ## How to execute
 gameOfLife.py file can be executed by 3 states.
