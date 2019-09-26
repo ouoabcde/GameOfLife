@@ -67,7 +67,7 @@ def visualize(board, generation):
         engine.applyGameRules()
         # set up animation
         print('Generation: {} Birth: {} Survive: {}'.format(count, engine.nBirth, engine.nSurvive))
-        plt.pause(1.0)
+        plt.pause(0.3)
 
 def randomBoard(height, width): 
     """returns a board of width x height random values"""
