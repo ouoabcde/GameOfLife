@@ -39,16 +39,12 @@ def makeBoardFromFile(initial_data):
         NUM_ROWS = int(board_size[0])
         NUM_COLS = int(board_size[1])
         board = np.zeros(NUM_ROWS * NUM_COLS).reshape(NUM_ROWS, NUM_COLS)
-        print("NUM_ROWS: {}".format(NUM_ROWS))
-        print("NUM_COLS: {}".format(NUM_COLS))
         count = 1
         while data:
-            print("Line {}: {}".format(count, data))
             data = initial_data.readline()
             count += 1
             if count == 2:
                 NUM_CELLS_INIT = int(data)
-                print("NUM_CELLS_INIT: {}".format(NUM_CELLS_INIT))
             elif 2 < count <= NUM_CELLS_INIT + 2: # now it's spots
                 location = data.split()
                 row = int(location[0])
@@ -87,9 +83,7 @@ def main():
             random_width = random.randint(0, 200)
             random_height = random.randint(0, 200)
             if random_width >= 80 and random_height >= 40:
-                print("random_width: {}".format(random_width))
                 width = random_width
-                print("random_hegiht: {}".format(random_height))
                 height = random_height
                 break
         board = randomBoard(height, width)
