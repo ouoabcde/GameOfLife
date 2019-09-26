@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import sys
+import random
 
 # setting up the values for the board 
 ALIVE = 1
@@ -31,6 +32,10 @@ class GameOfLifeEngine:
         self.nSurvive = nSurvive
         return cell
 
+def randomBoard(height, width): 
+    """returns a board of width x height random values"""
+    return np.random.choice(vals, width * height, p=[0.2, 0.8]).reshape(height, width)
+
 def main():
     if len(sys.argv) == 2:
         with open(sys.argv[1], 'r') as initial_data:
@@ -54,6 +59,7 @@ def main():
                     row = int(location[0])
                     col = int(location[1])
                     board[row, col] = ALIVE
+            plt.title("Jung Hyun's Game of Life")
             engine = GameOfLifeEngine(board)
             generation = 0
             while True:
@@ -66,8 +72,30 @@ def main():
                 # set up animation
                 print('Generation: {} Birth: {} Survive: {}'.format(generation, engine.nBirth, engine.nSurvive))
                 plt.pause(0.4)
-    else:
-        print("else")
-        print("len(sys.argv): {}".format(len(sys.argv)))
+    elif len(sys.argv) == 1:
+        random_width = random.randint(0, 200)
+        random_height = random.randint(0, 200)
+        if random_width >= 80:
+            print("random_width: {}".format(random_width))
+            width = random_width
+        if random_height >= 40:
+            print("random_hegiht: {}".format(random_height))
+            height = random_height
+        board = randomBoard(height, width)
+        print("else board: {}".format(board))
+        plt.title("Jung Hyun's Game of Life")
+        engine = GameOfLifeEngine(board)
+        generation = 0
+        while True:
+            if generation == 0:
+                plt.ion()
+            generation += 1
+            plt.imshow(board, cmap='binary')
+            plt.show()
+            engine.applyGameRules()
+            # set up animation
+            print('Generation: {} Birth: {} Survive: {}'.format(generation, engine.nBirth, engine.nSurvive))
+            plt.pause(0.3)
 
-main()
+if __name__ == '__main__':
+    main()
