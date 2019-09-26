@@ -83,14 +83,15 @@ def main():
         generation = 0
         visualize(board, generation)
     elif len(sys.argv) == 1:
-        random_width = random.randint(0, 200)
-        random_height = random.randint(0, 200)
-        if random_width >= 80:
-            print("random_width: {}".format(random_width))
-            width = random_width
-        if random_height >= 40:
-            print("random_hegiht: {}".format(random_height))
-            height = random_height
+        while True:
+            random_width = random.randint(0, 200)
+            random_height = random.randint(0, 200)
+            if random_width >= 80 and random_height >= 40:
+                print("random_width: {}".format(random_width))
+                width = random_width
+                print("random_hegiht: {}".format(random_height))
+                height = random_height
+                break
         board = randomBoard(height, width)
         generation = 0
         visualize(board, generation)
